@@ -1,0 +1,21 @@
+[
+  {
+    "daycare_name": "Sunshine",
+    "kid_age_low": 0.5,
+    "kid_age_high": 4,
+    "monthly_fee": 1400,
+    "languages": "Chinese",
+    "potty_train": "True",
+    "zip_code": "11111"
+  },
+
+  {
+    "daycare_name": "Rainbow",
+    "kid_age_low": 1,
+    "kid_age_high": 4,
+    "monthly_fee": 1300,
+    "languages": "Spanish",
+    "potty_train": "True",
+    "zip_code": "11111"
+  }
+]
