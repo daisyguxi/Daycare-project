@@ -107,12 +107,6 @@ def daycare():
                             location=location,
                             image=image)
 
-
-
-
-   
-
-
 if __name__ == "__main__":
     # DebugToolbarExtension(app)
 

@@ -11,7 +11,12 @@ def create_user(fname, lname, zipcode, email, password ):
            zipcode=zipcode,
            email=email,
            password=password
+
     )
+    db.session.add(user)
+    db.session.commit()
+    
+
     return user
 
 def get_users():
