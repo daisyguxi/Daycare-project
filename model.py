@@ -10,9 +10,9 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    first_name = db.Column(db.String(30), nullable=False)
-    last_name = db.Column(db.String(30))
-    zip_code = db.Column(db.Integer)
+    fname = db.Column(db.String(30), nullable=False)
+    lname = db.Column(db.String(30))
+    zipcode = db.Column(db.Integer)
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     
@@ -27,16 +27,16 @@ class Daycare(db.Model):
     __tablename__ = "daycares"
 
     daycare_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    daycare_name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
     kid_age_low = db.Column(db.Float, nullable=False)
     kid_age_high = db.Column(db.Float, nullable=False)
     monthly_fee = db.Column(db.Integer, nullable=False)
     languages = db.Column(db.String, nullable=False)
     potty_train = db.Column(db.Boolean)
-    zip_code  = db.Column(db.Integer)
+    zipcode  = db.Column(db.Integer)
 
     def __repr__(self):
-        return f"<Daycare daycare_id={self.daycare_id} daycare_name={self.daycare_name}>"
+        return f"<Daycare daycare_id={self.daycare_id} daycare_name={self.name}>"
 
 
 

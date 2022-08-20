@@ -1,7 +1,22 @@
-<html>
-  <head>
-    <body>
-      <h1>Welcome!</h1>
-    </body>
-  </head>
-</html>
+{% extends 'base.html' %} {% block title %}LovelyCare Home{% endblock %} {%
+block body %}
+
+<h1>Welcome to LovelyCare!</h1>
+
+<form action="/users" method="post">
+  <label for="email">Email:</label>
+  <br />
+  <input type="text" name="email" />
+  <br />
+  <label for="password">Password:</label>
+  <br />
+  <input type="text" name="password" />
+  <br />
+  <button>Sign in</button>
+</form>
+
+<p>Please sign up if you don't have an account:</p>
+<form action="/signup" method="post">
+  <button>Sign up</button>
+</form>
+{% endblock %}

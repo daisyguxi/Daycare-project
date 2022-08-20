@@ -5,7 +5,7 @@
     "kid_age_high": 4,
     "monthly_fee": 1400,
     "languages": "Chinese",
-    "potty_train": "True",
+    "potty_train": true,
     "zip_code": "11111"
   },
 
@@ -15,7 +15,7 @@
     "kid_age_high": 4,
     "monthly_fee": 1300,
     "languages": "Spanish",
-    "potty_train": "True",
+    "potty_train": true,
     "zip_code": "11111"
   }
 ]
