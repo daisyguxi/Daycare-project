@@ -36,7 +36,7 @@ class Daycare(db.Model):
     zipcode  = db.Column(db.Integer)
 
     def __repr__(self):
-        return f"<Daycare daycare_id={self.daycare_id} daycare_name={self.name}>"
+        return f"<Daycare daycare_id={self.daycare_id} name={self.name}>"
 
 
 

@@ -1,20 +1,31 @@
 {% extends 'base.html' %} 
 {% block title %}Daycares{% endblock %} 
-{% block body %}
 
+<head>
+   <script type="text/javascript">
+       function myFunction(val){
+          console.log(val)
+      }
+  </script>
+
+</head>
+{% block body %}
 <ul>
   {% for business in data.businesses %}
-  <form action="/daycare"></form>
+  <form action="/search/{{ business.name }}/{{ business.location.city }}" method="POST">
   <li id="name">{{ business.name}}</li>
   <li id="phone">{{ business.phone }}</li>
-  <li id="location">{{ business.location.address1 }}</li>
-  <li id="location">{{ business.location.city }} </li>
-  <li id="location">{{ business.location.state }}</li>
-  <li id="location">{{ business.location.zip_code }}</li>
+  <li id="street">{{ business.location.address1 }}</li>
+  <li id="city">{{ business.location.city }} </li>
+  <li id="state">{{ business.location.state }}</li>
+  <li id="zip">{{ business.location.zip_code }}</li>
   <li id="image">{{ business.image_url }}</li>
 
 </ul>
-  <button type="submit" name="business">See more details</button>
+  
+    
+  <button type="submit">See more details</button>
+
 </form>
 
 {% endfor %} 

@@ -62,7 +62,22 @@ def search():
 
 @app.route("/users", methods=['POST'])
 def users():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    user = crud.get_user_by_email(email)
+    
+
+    if not user:
+        flash("Please enter your email address.")
+        return redirect("/")
+    elif user.password != password:
+        flash("Password is incorrect, please try again.")
+        return redirect("/")
+    
+    
     return render_template('users.html')
+        
+
 
 
 @app.route("/signup", methods=['POST'])
@@ -77,37 +92,50 @@ def signin():
     email = request.form.get('email')
     password = request.form.get('password')
     
-    user = crud.get_user_by_email('daisy557188@gmail.com')
+    user = crud.get_user_by_email(email)
     print(user)
 
     if user:
-        flash("Cannot create an account with that email. Try again.")
+        flash("There is an existing account associated with this email. Please sign in.")
 
     else:
         user = crud.create_user(fname, lname, zipcode, email, password)
         db.session.add(user)
         db.session.commit()
-        flash("Account created! Please log in.")
+        flash("Account created! Please sign in.")
 
     
     return redirect("/")
 
 
-@app.route("/daycare", methods=['POST'])
-def daycare():
-    name = request.form.get('name')
-    phone = request.form.get('phone')
-    location = request.form.get('location')
-    image = request.form.get('image')
+# @app.route("/daycare", methods=['POST'])
+# def daycare():
+#     name = request.form.get('name')
+#     phone = request.form.get('phone')
+#     location = request.form.get('location')
+#     image = request.form.get('image')
 
 
-    return render_template('daycare.html',
-                            name=name,
-                            phone=phone,
-                            location=location,
-                            image=image)
+#     return render_template('daycare.html',
+#                             name=name,
+#                             phone=phone,
+#                             location=location,
+#                             image=image)
+@app.route('/search/<name>/<address>', methods=["POST"])
+def daycareDetail(name, address):
+    #address = request.form.get('city')
+    #phone = request.form.get('phone')
+    url = "https://api.yelp.com/v3/businesses/search"
+    auth = {'Authorization': 'Bearer %s' % YELP_KEY}
+    payload = {'limit': '1', 'location': address, 'term': name}
+    print(address)
+    print(name)
+
+    data = requests.get(url, params=payload, headers=auth).json()
+    return data
+
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)
-
+    connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)

@@ -27,6 +27,8 @@ def get_users():
 def get_user_by_email(email):
     """Return a user by email."""
     return User.query.filter(User.email == email).first()
+def get_user_by_password(password):
+    return User.query.filter(User.password == password).first()
     
 def create_daycare(name, kid_age_low, kid_age_high, monthly_fee, languages, potty_train, zipcode):
     """Create and return a new daycare"""
