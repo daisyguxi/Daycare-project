@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block title %}Daycares{% endblock %} 
+
+{% block body %}
+<ul>
+  {% for business in data.businesses %}
+  <form action="/search/{{ business.name }}/{{ business.location.city }}/detail" method="POST">
+  <li id="name">Name: {{ business.name}}</li>
+  <li id="phone">Phone: {{ business.phone }}</li>
+  <li id="rating">Rating: {{ business.rating }}</li>
+  <li id="street">Address: {{ business.location.address1 }}, {{ business.location.city }}, {{ business.location.state }} {{ business.location.zip_code }}</li>
+</ul>
+  
+    
+  <button type="submit">Save</button>
+  <button type="submit">Send message</button>
+
+</form>
+
+{% endfor %} 
+{% endblock %}

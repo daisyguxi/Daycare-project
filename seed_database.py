@@ -23,17 +23,17 @@ with open("Data/daycares.json") as f:
 # Create daycares, store them in list so we can use them
 daycares_in_db = []
 for daycare in daycare_data:
-    name, kid_age_low, kid_age_high, monthly_fee, languages, potty_train, zipcode = (
+    name, age_low, age_high, monthly_fee, languages, potty, zipcode = (
         daycare["name"],
-        daycare["kid_age_low"],
-        daycare["kid_age_high"],
+        daycare["age_low"],
+        daycare["age_high"],
         daycare["monthly_fee"],
         daycare["languages"],
-        daycare["potty_train"],
+        daycare["potty"],
         daycare["zipcode"]
     )
 
-    db_daycare = crud.create_daycare(name, kid_age_low, kid_age_high, monthly_fee, languages, potty_train, zipcode)
+    db_daycare = crud.create_daycare(name, age_low, age_high, monthly_fee, languages, potty, zipcode)
     daycares_in_db.append(db_daycare)
 
 model.db.session.add_all(daycares_in_db)
