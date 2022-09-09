@@ -32,22 +32,29 @@ def search():
     payload = {'limit': '30', 'location': postalcode, 'categories': 'childcare'}
     data = requests.get(url, params=payload, headers=auth).json()
     age_low = ['0.5Y', '1Y'] 
-    age_high = ['4', '5']
-    languages = ['English', 'Mandarin', 'Spanish']
+    age_high = ['3Y', '4Y', '5Y']
+    languages1 = 'English'
+    languages2 = ['Mandarin', 'Spanish']
+
     potty = ["Yes", "No"]
-    monthly_fee = [1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+    monthly_fee = ["$1200", "$1300", "$1400", "$1500", "$1600", "$1700", "$1800", "$1900", "$2000"]
+
+    fake_data = []
     for i in range(len(data['businesses'])):
-        fake_data[i] = {}
-        low = choice(age_low)
-        high = choice(age_high)
-        Languages = choice(languages)
-        potty = choice(potty)
-        monthly_fee = choice(monthly_fee)
-        fake_data[i][age_low] = low
-        fake_data[i][age_high] = high
-        fake_data[i][languages] = language
-        fake_data[i][potty] = potty
-        fake_data[i][monthly_fee] = monthly_fee
+        business_copy = {}
+        Low = choice(age_low)
+        High = choice(age_high)
+        Language1 = languages1
+        Language2 = choice(languages2)
+        Potty = choice(potty)
+        Monthly_fee = choice(monthly_fee)
+        business_copy["age_low"] = Low
+        business_copy["age_high"] = High
+        business_copy["languages1"] = Language1
+        business_copy["languages2"] = Language2
+        business_copy["potty"] = Potty
+        business_copy["monthly_fee"] = Monthly_fee
+        fake_data.append(business_copy)
 
 
     #build new keys, then add to fake_data
@@ -61,8 +68,10 @@ def search():
     
   
     return render_template('daycare.html',
-                          data=data,
-                          fake_data=fake_data)
+                           businesses=data['businesses'],
+                           fake_data=fake_data,
+                           length=len(data["businesses"]),
+                           postalcode=postalcode)
 
     
     # print(data)
@@ -151,19 +160,20 @@ def signin():
 #                             phone=phone,
 #                             location=location,
 #                             image=image)
-@app.route('/search/<name>/<address>', methods=["POST"])
-def daycareDetail(name, address):
+@app.route('/search/<name>/<zipcode>', methods=["POST"])
+def daycareDetail(name, zipcode):
     #address = request.form.get('city')
     #phone = request.form.get('phone')
     url = "https://api.yelp.com/v3/businesses/search"
     auth = {'Authorization': 'Bearer %s' % YELP_KEY}
-    payload = {'limit': '1', 'location': address, 'term': name}
-    print(address)
-    print(name)
+    payload = {'limit': '1', 'location': zipcode, 'term': name}
+    
+    #print(name)
 
     data = requests.get(url, params=payload, headers=auth).json()
+    #print(data, 'LINE 169 DATA')
     return render_template('saveandcontact.html',
-                          data=data)
+                           data=data)
     
     #return data
 

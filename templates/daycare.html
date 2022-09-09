@@ -3,17 +3,16 @@
 
 {% block body %}
 <ul>
-  {% for i in range(len(data.businesses)) %}
-  <form action="/search/{{ business.name }}/{{ business.location.city }}" method="POST">
-  <li id="name">{{ business.name}}</li>
-  <li id="agelow">{{ business[i][age_low]}}</li>
-  <li id="agehigh">{{ business[i][age_high]}}</li>
-  <li id="languages">{{ business[i][languages] }}</li>
-  <li id="potty">{{ business[i][potty] }}</li>
-  <li id="fee">{{ business[i][monthly_fee] }}</li>
-</ul>
-  
-    
+  {% for i in range(length) %}
+  <form action="/search/{{ businesses[i].name }}/{{ postalcode }}" method="POST">
+  <li id="name">{{ businesses[i].name}}</li>
+  <li id="agelow">Min age: {{ fake_data[i]["age_low"]}}</li>
+  <li id="agehigh">Max age: {{ fake_data[i]["age_high"]}}</li>
+  <li id="languages1">1st language: {{ fake_data[i]["languages1"] }}</li>
+  <li id="languages2">2nd language: {{ fake_data[i]["languages2"] }}</li>
+  <li id="potty">Potty trained: {{ fake_data[i]["potty"] }}</li>
+  <li id="fee">Monthly fee: {{ fake_data[i]["monthly_fee"] }}</li>
+</ul> 
   <button type="submit">Interested</button>
 
 </form>
