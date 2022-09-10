@@ -28,11 +28,11 @@ class Daycare(db.Model):
 
     daycare_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    kid_age_low = db.Column(db.Float, nullable=False)
-    kid_age_high = db.Column(db.Float, nullable=False)
+    age_low = db.Column(db.Float, nullable=False)
+    age_high = db.Column(db.Float, nullable=False)
     monthly_fee = db.Column(db.Integer, nullable=False)
     languages = db.Column(db.String, nullable=False)
-    potty_train = db.Column(db.Boolean)
+    potty = db.Column(db.Boolean)
     zipcode  = db.Column(db.Integer)
 
     def __repr__(self):

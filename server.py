@@ -5,6 +5,7 @@ from model import connect_to_db, db
 import crud, os, requests
 from pprint import pprint
 from random import choice
+import json
 
 from jinja2 import StrictUndefined
 app = Flask(__name__)
@@ -160,20 +161,32 @@ def signin():
 #                             phone=phone,
 #                             location=location,
 #                             image=image)
-@app.route('/search/<name>/<zipcode>', methods=["POST"])
-def daycareDetail(name, zipcode):
+@app.route('/daycare_detail')
+def daycareDetail():
     #address = request.form.get('city')
     #phone = request.form.get('phone')
+    name = request.args.get('name')
+    zipcode = request.args.get('zipcode')
+    fakedata = request.args.get('fakedata')
+    fakedata = fakedata.replace("\'", "\"")
+    fakedata = json.loads(fakedata)
+
+
+
     url = "https://api.yelp.com/v3/businesses/search"
     auth = {'Authorization': 'Bearer %s' % YELP_KEY}
     payload = {'limit': '1', 'location': zipcode, 'term': name}
     
     #print(name)
+    print(fakedata)
+    print("\n"*5)
+    print(type(fakedata))
 
     data = requests.get(url, params=payload, headers=auth).json()
     #print(data, 'LINE 169 DATA')
     return render_template('saveandcontact.html',
-                           data=data)
+                           data=data,
+                           fake_data=fakedata)
     
     #return data
 

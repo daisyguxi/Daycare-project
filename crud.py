@@ -34,11 +34,11 @@ def create_daycare(name, kid_age_low, kid_age_high, monthly_fee, languages, pott
     """Create and return a new daycare"""
     daycare = Daycare(
         name=name,
-        kid_age_low=kid_age_low,
-        kid_age_high=kid_age_high,
+        age_low=age_low,
+        age_high=age_high,
         monthly_fee=monthly_fee,
         languages=languages,
-        potty_train=potty_train,
+        potty=potty,
         zipcode=zipcode
     )
 
