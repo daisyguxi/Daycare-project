@@ -190,6 +190,29 @@ def daycareDetail():
     
     #return data
 
+@app.route('/saved_daycares', methods=["POST"])
+def save_daycare():
+    name = request.json.get("name")
+    phone = request.json.get("phone")
+    rating = request.json.get("rating")
+    address = request.json.get("address")
+    min_age = request.json.get("agelow")
+    max_age = request.json.get("agehigh")
+    language1 = request.json.get("language1")
+    language2 = request.json.get("language2")
+    potty = request.json.get("potty")
+    fee = request.json.get("fee")
+
+    daycare = crud.create_daycare(name, phone, rating, address, min_age, max_age, language1, language2, potty, fee)
+    print(daycare)
+    db.session.add(daycare)
+    db.session.commit()
+
+    return {
+        "sucess": True,
+        "Status": f"You have saved {name}"
+    }
+
 
 if __name__ == "__main__":
     # DebugToolbarExtension(app)

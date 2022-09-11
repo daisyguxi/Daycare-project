@@ -11,17 +11,17 @@
   <li id="street">Address: {{ business["location"]["address1"] }}, {{ business["location"]["city"] }}, {{ business["location"]["state"] }} {{ business["location"]["zip_code"] }}</li>
   <li id="agelow">Min age: {{ fake_data["age_low"]}}</li>
   <li id="agehigh">Max age: {{ fake_data["age_high"]}}</li>
-  <li id="languages1">1st language: {{ fake_data["languages1"] }}</li>
-  <li id="languages2">2nd language: {{ fake_data["languages2"] }}</li>
+  <li id="language1">1st language: {{ fake_data["languages1"] }}</li>
+  <li id="language2">2nd language: {{ fake_data["languages2"] }}</li>
   <li id="potty">Potty trained: {{ fake_data["potty"] }}</li>
   <li id="fee">Monthly fee: {{ fake_data["monthly_fee"] }}</li>
 </ul>
   
     
-  <button type="submit">Save</button>
-  <button type="submit">Send message</button>
+  <button id="save" type="submit">Save</button>
+  <button id="message" type="submit">Send message</button>
 
 </form>
-
+<script src="static/daycare.js"></script>
 {% endfor %} 
 {% endblock %}

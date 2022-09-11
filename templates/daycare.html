@@ -3,13 +3,13 @@
 
 <form action="/daycare_detail">
   <ul>
-    <li id="name">{{ businesses[i].name}}</li>
-    <li id="agelow">Min age: {{ fake_data[i]["age_low"]}}</li>
-    <li id="agehigh">Max age: {{ fake_data[i]["age_high"]}}</li>
-    <li id="languages1">1st language: {{ fake_data[i]["languages1"] }}</li>
-    <li id="languages2">2nd language: {{ fake_data[i]["languages2"] }}</li>
-    <li id="potty">Potty trained: {{ fake_data[i]["potty"] }}</li>
-    <li id="fee">Monthly fee: {{ fake_data[i]["monthly_fee"] }}</li>
+    <li id="daycare_name">{{ businesses[i].name}}</li>
+    <li id="age_low">Min age: {{ fake_data[i]["age_low"]}}</li>
+    <li id="age_high">Max age: {{ fake_data[i]["age_high"]}}</li>
+    <li id="languages_1">1st language: {{ fake_data[i]["languages1"] }}</li>
+    <li id="languages_2">2nd language: {{ fake_data[i]["languages2"] }}</li>
+    <li id="potty_train">Potty trained: {{ fake_data[i]["potty"] }}</li>
+    <li id="monthly_fee">Monthly fee: {{ fake_data[i]["monthly_fee"] }}</li>
   </ul>
   <input type="hidden" name="name" value="{{ businesses[i].name }}" />
   <input type="hidden" name="zipcode" value="{{ postalcode }}" />

@@ -30,16 +30,19 @@ def get_user_by_email(email):
 def get_user_by_password(password):
     return User.query.filter(User.password == password).first()
     
-def create_daycare(name, kid_age_low, kid_age_high, monthly_fee, languages, potty_train, zipcode):
+def create_daycare(name, phone, rating, address, min_age, max_age, language1, language2, potty, monthly_fee):
     """Create and return a new daycare"""
     daycare = Daycare(
         name=name,
-        age_low=age_low,
-        age_high=age_high,
-        monthly_fee=monthly_fee,
-        languages=languages,
+        phone=phone,
+        rating=rating,
+        address=address,
+        min_age=min_age,
+        max_age=max_age,
+        language1=language1,
+        language2=language2,
         potty=potty,
-        zipcode=zipcode
+        monthly_fee=monthly_fee
     )
 
     db.session.add(daycare)
