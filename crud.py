@@ -1,5 +1,5 @@
 """CRUD operations."""
-from model import db, User, Daycare, Appointment, Save, connect_to_db
+from model import db, User, Daycare, Save, connect_to_db
 
 """Functions start here!"""
 
@@ -58,25 +58,17 @@ def get_daycare_by_id(daycare_id):
     """Return a daycare by primary key."""
     return Daycare.query.get(daycare_id)
 
-def create_appointment(user, daycare, appt_time):
-    """Create and return a new appointment"""
-    appointment = Appointment(user=user, daycare=daycare, appt_time=appt_time)
-    db.session.add(appointment)
-    db.session.commit()
-    return appointment
-
-#def update_appointment(appt_id, new_appt_time):
-#    """Update an appointment given appt_id and the updated appt_time."""
-#    appointment = Appointment.query.get(appt_id)
-#    appointment.appt_time = new_appt_time
-
 def create_save(user, daycare):
     save = Save(user=user, daycare=daycare)
     db.session.add(save)
     db.session.commit()
     return save
 
+def get_saves_by_user(user):
+    user_id = user.user_id
+    return Save.query.filter(Save.user_id == user_id).all()
+
 
 if __name__ == '__main__':
     from server import app
-    connect_to_db(app)
+    connect_to_db(app) 

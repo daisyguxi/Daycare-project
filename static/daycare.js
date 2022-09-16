@@ -1,28 +1,20 @@
 //loop over the daycares in daycare list from Yelp API
 const eventBtn = document.querySelector("#save");
-// const handleClick = () => {
-//   alert(`Stop clicking me!`);
-// };
-// button.addEventListener("click", handleClick);
-
-// eventBtn.addEventListener("click", (evt) => {
-//   console.log(evt);
-// });
 
 eventBtn.addEventListener("click", (evt) => {
   evt.preventDefault();
 
   const formInputs = {
-    name: document.querySelector("#name").value,
-    phone: document.querySelector("#phone").value,
-    rating: document.querySelector("#rating").value,
-    address: document.querySelector("#street").value,
-    minAge: document.querySelector("#agelow").value,
-    maxAge: document.querySelector("#agehigh").value,
-    language1: document.querySelector("#language1").value,
-    language2: document.querySelector("#language2").value,
-    potty: document.querySelector("#potty").value,
-    fee: document.querySelector("#fee").value,
+    name: document.querySelector("#name").innerHTML,
+    phone: document.querySelector("#phone").innerHTML,
+    rating: document.querySelector("#rating").innerHTML,
+    address: document.querySelector("#street").innerHTML,
+    minAge: document.querySelector("#agelow").innerHTML,
+    maxAge: document.querySelector("#agehigh").innerHTML,
+    language1: document.querySelector("#language1").innerHTML,
+    language2: document.querySelector("#language2").innerHTML,
+    potty: document.querySelector("#potty").innerHTML,
+    fee: document.querySelector("#fee").innerHTML,
   };
 
   fetch("/saved_daycares", {

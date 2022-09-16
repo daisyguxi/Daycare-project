@@ -1,5 +1,4 @@
 """Models for Daycare finder app."""
-from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -28,35 +27,20 @@ class Daycare(db.Model):
 
     daycare_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    age_low = db.Column(db.Float, nullable=False)
-    age_high = db.Column(db.Float, nullable=False)
+    phone = db.Column(db.String, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
+    address = db.Column(db.String, nullable=False)
+    min_age = db.Column(db.String, nullable=False)
+    max_age = db.Column(db.String, nullable=False)
+    language1 = db.Column(db.String, nullable=False)
+    language2 = db.Column(db.String, nullable=False)
+    potty = db.Column(db.String, nullable=False)
     monthly_fee = db.Column(db.Integer, nullable=False)
-    languages = db.Column(db.String, nullable=False)
-    potty = db.Column(db.Boolean)
-    zipcode  = db.Column(db.Integer)
+    
 
     def __repr__(self):
         return f"<Daycare daycare_id={self.daycare_id} name={self.name}>"
 
-
-
-class Appointment(db.Model):
-    """An appointment."""
-
-    __tablename__ = "appointments"
-
-    appt_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    appt_time = db.Column(db.DateTime)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    daycare_id = db.Column(db.Integer, db.ForeignKey('daycares.daycare_id'))
-
-    user = db.relationship("User", backref="appoitments")
-    daycare = db.relationship("Daycare", backref="appointments")
-
-    def __repr__(self):
-        return f"<Appointment appt_id={self.appt_id} appt_time={self.appt_time}>"
-
-   
 
 
 class Save(db.Model):

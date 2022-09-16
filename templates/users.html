@@ -1,12 +1,17 @@
-{% extends 'base.html' %} {% block title %}Existing users sign in{% endblock %}
-{% block body %}
+{% extends 'base.html' %} {% block title %}Search{% endblock %} {% block body %}
 
+<p>Please enter your zip code:</p>
 
-  <p>Please enter your zip code:</p>
-
-  <form action="/search" method="POST">
-    <p><input type="text" name="postalcode" /></p>
-    <button>Search</button>
-  </form>
+<form action="/search" method="POST">
+  <p><input type="text" name="postalcode" /></p>
+  <button>Search</button>
 </form>
+<br />
+<ul>
+  Saved daycares: {% for save in saves %}
+  <li>
+    <a href="/daycare_detail/{{ save.daycare_id }}">{{ save.daycare.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock %}
