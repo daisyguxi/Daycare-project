@@ -58,6 +58,9 @@ def get_daycare_by_id(daycare_id):
     """Return a daycare by primary key."""
     return Daycare.query.get(daycare_id)
 
+def get_daycare_by_name(name):
+    return Daycare.query.filter(Daycare.name == name).first()
+
 def create_save(user, daycare):
     save = Save(user=user, daycare=daycare)
     db.session.add(save)
@@ -68,6 +71,14 @@ def get_saves_by_user(user):
     user_id = user.user_id
     return Save.query.filter(Save.user_id == user_id).all()
 
+def get_saves_by_daycare(daycare):
+    daycare_id = daycare.daycare_id
+    return Daycare.query.filter(Daycare.daycare_id == daycare_id).all()
+
+def saves_daycare_by_user(user, daycare):
+    daycare_id = daycare.daycare_id
+    user_id = user.user_id
+    return Save.query.filter(Daycare.daycare_id == daycare_id, User.user_id == user_id).all()
 
 if __name__ == '__main__':
     from server import app

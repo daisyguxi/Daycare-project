@@ -1,21 +1,30 @@
 {% extends 'base.html' %} {% block title %}Daycares{% endblock %} {% block body
-%} Daycares near you: {% for i in range(length) %}
+%}
+<br />
+<br />
 
-<form action="/daycare_detail">
-  <ul>
-    <li id="daycare_name">{{ businesses[i].name}}</li>
-    <li id="age_low">Min age: {{ fake_data[i]["age_low"]}}</li>
-    <li id="age_high">Max age: {{ fake_data[i]["age_high"]}}</li>
-    <li id="languages_1">1st language: {{ fake_data[i]["languages1"] }}</li>
-    <li id="languages_2">2nd language: {{ fake_data[i]["languages2"] }}</li>
-    <li id="potty_train">Potty trained: {{ fake_data[i]["potty"] }}</li>
-    <li id="monthly_fee">Monthly fee: {{ fake_data[i]["monthly_fee"] }}</li>
-  </ul>
-  <input type="hidden" name="name" value="{{ businesses[i].name }}" />
-  <input type="hidden" name="zipcode" value="{{ postalcode }}" />
-  <input type="hidden" name="fakedata" value="{{ fake_data[i] }}" />
+{% for i in range(length) %}
+<div>
+  <form action="/daycare_detail">
+    <ul>
+      <h2 id="daycare_name">{{ businesses[i].name}}</h2>
+      <image class="img" src="{{ businesses[i].image_url }}"></image>
+      <li id="age_low">Min age: {{ fake_data[i]["age_low"]}}</li>
+      <li id="age_high">Max age: {{ fake_data[i]["age_high"]}}</li>
+      <li id="languages_1">1st language: {{ fake_data[i]["languages1"] }}</li>
+      <li id="languages_2">2nd language: {{ fake_data[i]["languages2"] }}</li>
+      <li id="potty_train">Potty trained: {{ fake_data[i]["potty"] }}</li>
+      <li id="monthly_fee">Monthly fee: ${{ fake_data[i]["monthly_fee"] }}</li>
+    </ul>
+    <input type="hidden" name="name" value="{{ businesses[i].name }}" />
+    <input type="hidden" name="zipcode" value="{{ postalcode }}" />
+    <input type="hidden" name="fakedata" value="{{ fake_data[i] }}" />
 
-  <button type="submit">Interested</button>
-</form>
-
+    <button class="button" type="submit">Interested</button>
+    <br />
+  </form>
+  <br />
+  <br />
+  <br />
+</div>
 {% endfor %} {% endblock %}

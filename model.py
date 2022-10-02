@@ -49,6 +49,8 @@ class Save(db.Model):
     save_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     daycare_id = db.Column(db.Integer, db.ForeignKey('daycares.daycare_id'))
+    
+
 
    
     user = db.relationship("User", backref="saves")

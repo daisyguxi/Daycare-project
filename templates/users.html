@@ -1,17 +1,31 @@
 {% extends 'base.html' %} {% block title %}Search{% endblock %} {% block body %}
-
-<p>Please enter your zip code:</p>
-
-<form action="/search" method="POST">
-  <p><input type="text" name="postalcode" /></p>
-  <button>Search</button>
-</form>
 <br />
-<ul>
-  Saved daycares: {% for save in saves %}
-  <li>
-    <a href="/daycare_detail/{{ save.daycare_id }}">{{ save.daycare.name }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<br />
+<br />
+<br />
+<h2>Please enter your zip code:</h2>
+<div>
+  <form action="/search" method="POST">
+    <p><input type="text" name="postalcode" /></p>
+    <button class="button">Search</button>
+  </form>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <h2>Saved daycares:</h2>
+  <ul>
+    {% for save in saves %}
+
+    <li>
+      <a target="_blank" href="/daycare_detail/{{ save.daycare_id }}"
+        >{{ save.daycare.name }}</a
+      >
+    </li>
+
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

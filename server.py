@@ -29,7 +29,7 @@ def users():
     password = request.form.get('password')
     user = crud.get_user_by_email(email)
     saves = crud.get_saves_by_user(user)
-
+   
     if not user:
         flash("Please enter your email address.")
         return redirect("/")
@@ -87,7 +87,7 @@ def search():
     age_low = ['0.5Y', '1Y'] 
     age_high = ['3Y', '4Y', '5Y']
     languages1 = 'English'
-    languages2 = ['Mandarin', 'Spanish']
+    languages2 = ['Mandarin', 'Spanish', 'Janpanese', 'Korean', 'Hindi', 'French']
 
     potty = ["Yes", "No"]
     monthly_fee = [1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
@@ -152,7 +152,7 @@ def daycareDetail():
     
     
 
-@app.route('/saved_daycares', methods=["POST"])
+@app.route('/saved_daycares', methods=["POST", "GET"])
 def save_daycare():
     email = session.get("email")
     name = request.json.get("name")
@@ -165,19 +165,22 @@ def save_daycare():
     language2 = request.json.get("language2")
     potty = request.json.get("potty")
     fee = request.json.get("fee")
-    daycare = crud.create_daycare(name, phone, rating, address, min_age, max_age, language1, language2, potty, fee)
+    daycare = crud.get_daycare_by_name(name)
     user = crud.get_user_by_email(email)
-    saves = crud.get_saves_by_user(user)
-    
-    if saves:
-        flash("You already saved this daycare.")
+    if daycare:
+        saves = crud.saves_daycare_by_user(user, daycare)
+        if saves:
+            return {
+             "success": True,
+             "status": f" You already saved {name}."
+    }
+        else: 
+            saves = crud.create_save(user, daycare) 
     else:
-        saves = crud.create_save(user, daycare) 
-        db.session.add(saves)
-        db.session.commit()
-
-
-    return {
+        new_daycare = crud.create_daycare(name, phone, rating, address, min_age, max_age, language1, language2, potty, fee)
+        saves = crud.create_save(user, new_daycare) 
+             
+        return {
              "success": True,
              "status": f" {name} saved!"
     }

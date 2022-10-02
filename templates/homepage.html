@@ -1,23 +1,31 @@
-{% extends 'base.html' %}
-
-<link rel="stylesheet" href="/static/css/homepage.css" />{% block title
-%}LovelyCare Home{% endblock %} {% block head %}{% endblock %} {% block body %}
+{% extends 'base.html' %} {% block title %}LovelyCare Home{% endblock %} {%
+block body %}
+<br />
 <h1>Welcome to LovelyCare!</h1>
+<div>
+  <form action="/users" method="post">
+    <label for="email">Email:</label>
+    <br />
+    <input type="text" name="email" />
+    <br />
+    <label for="password">Password:</label>
+    <br />
+    <input type="password" name="password" />
+    <br />
+    <br />
+    <button class="button">Sign in</button>
+  </form>
+  <br />
+  <br />
+  <p>Please sign up if you don't have an account:</p>
+  <form action="/signup" method="post">
+    <button class="button">Sign up</button>
+  </form>
+</div>
 
-<form action="/users" method="post">
-  <label for="email">Email:</label>
-  <br />
-  <input type="text" name="email" />
-  <br />
-  <label for="password">Password:</label>
-  <br />
-  <input type="text" name="password" />
-  <br />
-  <button>Sign in</button>
-</form>
-
-<p>Please sign up if you don't have an account:</p>
-<form action="/signup" method="post">
-  <button>Sign up</button>
-</form>
+<br />
+<br />
+<br />
+<p>Trying to find a bilingual daycare for your little ones?</p>
+<p>Let <em>LovelyCare</em> helps you out!</p>
 {% endblock %}
