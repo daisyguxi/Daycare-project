@@ -5,5 +5,5 @@ LovelyCare is a web-based application helps parents to find bilingual daycares. 
 # Project Tech Stack
 Python, Flask, Jinja, SQLAlchemy, JavaScript (AJAX, JSON), PostgreSQL, HTML, CSS
 
-#APIs Used
+# APIs Used
 Yelp API
