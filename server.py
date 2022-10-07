@@ -23,21 +23,25 @@ def homepage():
 
 
 
-@app.route("/users", methods=['POST'])
+@app.route("/users", methods=['POST', 'GET'])
 def users():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    user = crud.get_user_by_email(email)
-    saves = crud.get_saves_by_user(user)
-   
-    if not user:
-        flash("Please enter your email address.")
-        return redirect("/")
-    elif user.password != password:
-        flash("Password is incorrect, please try again.")
-        return redirect("/")
-    session["email"] = user.email
-    
+    if not session["email"]:
+        email = request.form.get('email')
+        password = request.form.get('password')
+        user = crud.get_user_by_email(email)
+        saves = crud.get_saves_by_user(user)
+        
+        if not user:
+            flash("Please enter your email address.")
+            return redirect("/")
+        elif user.password != password:
+            flash("Password is incorrect, please try again.")
+            return redirect("/")
+        session["email"] = user.email
+    else:
+        user = crud.get_user_by_email(session["email"])
+        saves = crud.get_saves_by_user(user)
+
     return render_template('users.html', saves=saves)
 
 
